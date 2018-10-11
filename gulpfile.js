@@ -1,8 +1,11 @@
-var purify = require('gulp-purifycss');
-var gulp = require('gulp');
+const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
 
-gulp.task('css', function() {
+gulp.task('minify', () => {
   return gulp.src('./index.html')
-    .pipe(purify(['./index.html']))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(htmlmin({
+    	collapseWhitespace: true,
+    	removeComments: true
+    }))
+    .pipe(gulp.dest('dist'));
 });
